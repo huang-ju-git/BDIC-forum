@@ -1,0 +1,21 @@
+.confirm{
+    width: 500px;
+    margin-top: 150px;
+    margin-left: 380px;
+}
+body{
+        background-color: rgba(0, 0, 0, 0);
+        background-image: url("../images/background.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: auto auto;
+    background-size: cover;
+
+}
+.panel-body p{
+    font-size: 20px;
+}

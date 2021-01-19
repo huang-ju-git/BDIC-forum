@@ -1,0 +1,221 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+}
+
+
+.friend-page{
+    margin-left: 100px;
+    letter-spacing: normal;
+    word-spapxcing: normal;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.personal{
+    width: 1000px;
+    display: inline-block;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    font-size: 12px;
+}
+.personal_header {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+
+}
+.personal_header .pf_wrap {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+}
+.personal_header .cover_wrap {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 1;
+}
+.personal_header .photo_wrap {
+    transform: scaleX(1) scaleY(1);
+    transition: transform 4s linear;
+    transition-property: transform;
+    transition-duration: 4s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+}
+.personal_header .Per_shadow {
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 50%,rgba(0,0,0,0.3) 100%);
+        background-color: rgba(0, 0, 0, 0);
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%);
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+
+}
+.personal_header .p_shadow {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.personal_header .pf_photo {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 48px auto 0;
+    padding: 4px;
+    background: #fff;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+}
+.personal_header .photo_wrap, .personal_header .pf_photo .photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+.personal_header .pf_username {
+    margin-top: 6px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    vertical-align: text-bottom;
+}
+
+.personal_header .pf_intro {
+    margin-top: 4px;
+    text-align: center;
+    color: #fff;
+    line-height: 18px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+.personal_header .upcover {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    z-index: 10;
+}
+
+
+.friendbox .friendlist {
+    margin-bottom: -16px;
+}
+
+.friendbox .frienditem {
+    position: relative;
+    margin-top: -1px;
+    padding-left: 10px;
+    padding-top: 16px;
+    border-top-style: solid;
+    border-top-width: medium;
+    border-top-style: none;
+    border-top-color: currentcolor;
+}
+
+.clearfix {
+    display: block;
+}
+
+img{
+    border: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-top-color: currentcolor;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-left-color: currentcolor;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+}
+
+
+.friendbox{
+    padding: 1px 16px 16px;
+
+}
+.friendbox.friend-photo{
+    float: left;
+    padding-right: 15px;
+}
+
+a, .F_link1, a.F_txt1:hover, a.current .F_txt1, a.F_txt2:hover {
+    color: #eb7350;
+}
+
+.friendbox .friend-photo img {
+    border-radius: 50%;
+}
+.friendlist{
+    width: 1000px;
+}
+
+.friend_info {
+    margin-left: 65px;
+    vertical-align: top;
+    margin-top:  -40px;
+
+}
+.friendbox .info_connect {
+    width: 100%;
+}
+
+.fline1{
+    border-color: #d9d9d9;
+}
+
+.F_f14 {
+    font-size: 14px;
+}
+
+.F_fw {
+    font-weight: 700;
+}
+
+.F_txt1 {
+    color: #333;
+    text-decoration: none;
+}
+
+.W_icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+}
+
+.info_connect,.info_intro {
+    margin-top: 8px;
+}
+
+.con_type {
+    padding: 0 10px 0 0;
+}
+
+.F_line {
+    border-left-width: 1px;
+    border-left-style: solid;
+    overflow: hidden;
+    display: inline;
+    width: auto;
+    padding: 0 10px;
+}
+
+

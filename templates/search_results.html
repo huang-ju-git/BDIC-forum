@@ -1,0 +1,54 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#    {% import "bootstrap/wtf.html" as wtf %}#}
+{#    {{ wtf.quick_form(form) }}#}
+{#    <form method = 'POST'>#}
+{#        {{ form.hidden_tag() }}#}
+{#        {{ form.name.label }}{{ form.name() }}#}
+{#        {{ form.submit() }}#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+
+
+{%  extends 'base.html' %}
+
+{% block title %}Search Result{% endblock %}
+
+{% block head %}
+       <link rel="stylesheet" href="{{  url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+{% block main %}
+    <ul class="question-list-group">
+        {% for result in results  %}
+            <li>
+                <div class="question-group">
+                    <p class="question-title"><a href="{{ url_for('detail',question_id=result.id) }}">{{ result.title }}</a></p>
+                    <p class="question-content">{{ result.content }}</p>
+                    <div class="question-detail">
+                        <span class="question-author">{{ result.author.username }}</span>
+                        <span class="question-time">{{ result.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+{#            <li>#}
+{#            <div class="question-group">#}
+{#                <p class="question-title"><a href="#">aaaaaaaaaaaaaaaa</a></p>#}
+{#                <p class="question-content">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>#}
+{#                <div class="question-information">#}
+{#                    <span class="question-author">cc</span>#}
+{#                    <span class="question-time">2018-04-16</span>#}
+{#                </div>#}
+{#            </div>#}
+{#            </li>#}
+
+    </ul>
+
+{% endblock %}

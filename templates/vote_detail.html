@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+	    <div class="no-gutter row">
+      		<!-- left side column  显示投票结果用if判断是已参与过的投票，还是未参与-->
+  			<div class="col-md-8">
+              	<div class="panel panel-default" id="post">
+                    <div class="panel-body">
+
+
+                        <h3 class="page-title">{{ vote.title }}</h3>
+                        <p class="question-information">
+                            <span><a target="_blank" href="{{ url_for('elseinfo', user_id=vote.author.id) }}">Author: {{ vote.author.username }}</a></span>
+                            <span>Time:{{ vote.create_time }}</span>
+                        </p>
+                        <hr>
+
+                        <div class="vote-choices">
+                            <table id="main" >
+                                        <tr >
+                                            <td>
+                                                <h4>A. {{ vote.option1 }}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:550px">
+                                                <div id=0 style="background-color:#acd6ff; width:{{ vote.sum_option1 }}px; height:20px; border-width:0px;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label id="c1">{{ vote.sum_option1 }}</label> votes
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>B. {{ vote.option2 }}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>
+                                                <div id=1 style="background-color:#0066cc; height:20px; width:{{ vote.sum_option2 }}px  ; border-width:0px; border-color:blue; border-style:solid ; text-align:right;" ></div>
+
+                                            </td>
+                                            <td>
+                                            <label id="c2">{{ vote.sum_option2 }} </label> votes
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>
+                                                <h4>C. {{ vote.option3 }}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>
+                                                <div id=2 style="background-color:#ff7575; height:20px;width:{{ vote.sum_option3 }}px;  border-width:0px; border-color:blue; border-style:solid ; text-align:right;" ></div>
+
+                                            </td>
+                                            <td>
+                                            <label id="c3">{{ vote.sum_option3 }} </label> votes
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>D. {{ vote.option4 }}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td>
+                                                <div id=3 style="background-color:#5cadad;height:20px;width:{{ vote.sum_option4 }}px ; border-width:0px; border-color:blue; border-style:solid ; text-align:right;" ></div>
+
+                                            </td>
+                                            <td>
+                                            <label id="c4">{{ vote.sum_option4 }} </label> votes
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                        </div>
+
+                        <!--该用户参与过这个投票-->
+                        {% if my_voting %}
+
+                        {% else %}
+                           <!--  Report button-->
+                           <!-- Modal -->
+                            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#voteModal" style="float: right"> Vote </button>
+                            <div class="modal fade" id="voteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                             <h4 class="modal-title" id="myModalLabel">Select your choice</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form method="post" action="{{ url_for('voting') }}" id="vote">
+                                            <div class="form-group">
+                                                <h3>{{ vote.title }}</h3>
+                                                <p><input type="radio" name="option" value="A" /> A. {{ vote.option1 }}</p>
+                                                <p><input type="radio" name="option" value="B"  />B. {{ vote.option2 }}</p>
+                                                <p><input type="radio" name="option" value="C" /> C. {{ vote.option3 }}</p>
+                                                <p><input type="radio" name="option" value="D"  />D. {{ vote.option4 }}</p>
+
+                                                <input type="hidden" name="vote_id" value="{{ vote.id }}">
+
+                                                <button type="submit" class="btn btn-primary" >Submit</button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                              </div>
+                </div>
+
+                        {% endif %}
+
+
+
+      			</div><!--/panel body-->
+              </div><!--/panel-->
+      		</div><!--/end left column-->
+
+
+      		<!--right column     发起人的相关信息-->
+      		<div class="col-md-4">
+              <div class="panel" id="personinfo">
+                <div class="panel-heading" style="background-color:#6996c8;color:#f8f8f8;">Personal Information</div>
+                  <div class="panel-body">
+                    <div class="span9">
+
+                        <div id="asideProfile" class="aside-box">
+                            <div class="profile-intro ">
+                                <div class="icon">
+                                    <a href="{{ url_for('elseinfo', user_id=vote.author.id) }}">
+                                       <img alt="40x40" src="{{ url_for('static',filename='')}}{{ author_user.photo}} "  class="img-circle" width="100" height="100" />
+                                    </a>
+                                </div>
+                                <div class="user-info">
+                                    <p class="name">
+                                      <a href="{{ url_for('elseinfo', user_id=vote.author.id) }}"  class="text-truncate" >{{ vote.author.username}}</a>
+                                    </p>
+                                </div>
+                                <div class="user-info">
+                                    <span class="iffollow" >
+                                    <a class="btn btn-primary" href="{{ url_for('follow',person_id=vote.author.id) }}" target="_self" style="background-color: #87a8e1">Follow</a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="data-info d-flex item-tiling">
+                                <dl class="text-center" title="{{ vote.author.number_of_post }}">
+                                    <dt>Posts</dt>
+                                        <dd><span class="count">{{ vote.author.number_of_post }}</span></dd>
+                                </dl>
+
+                                <dl class="text-center" title="{{ vote.author.number_of_comment }}">
+                                    <dt>Comments</dt>
+                                    <dd><span class="count">{{ vote.author.number_of_post }}</span></dd>
+                                </dl>
+                            </div>
+
+                            <div class="data-info d-flex item-tiling">
+                                <dl class="text-center" title="{{ vote.author.number_of_post }}">
+                                    <dt>Follower</dt>
+                                    <dd><span class="count" id="fan">{{ vote.author.number_of_post }}</span></dd>
+                                </dl>
+                                <dl class="text-center" title="{{ vote.author.number_of_post }}">
+                                    <dt>Follow</dt>
+                                    <dd><span class="count">{{ vote.author.number_of_post }}</span></dd>
+                                </dl>
+                            </div>
+
+                            <div class="data-info d-flex item-tiling">
+                                <dl class="text-center" title="{{ vote.author.grade }}">
+                                    <dt>Grade</dt>
+                                        <dd><span class="count">{{ vote.author.grade }}</span></dd>
+                                </dl>
+                                <dl class="text-center" title="{{ vote.author.point }}">
+                                    <dt>Point</dt>
+                                    <dd><span class="count" id="fan">{{ vote.author.point }}</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                    </div>
+
+              </div>
+               </div><!--/panel-->
+      		</div><!--/end mid column-->
+
+	</div>
+</div>
+{% endblock %}

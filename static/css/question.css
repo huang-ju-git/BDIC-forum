@@ -1,0 +1,64 @@
+.form-container{
+
+}
+
+select{
+    float:left;
+    width: 200px;
+}
+
+.titlebox{
+    margin-left: 205px;
+}
+.vote-title{
+    float: left;
+}
+
+.note{
+   float: left;
+}
+input, textarea {
+    font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun','Yahei','Simsun';
+    font-family: Tahoma, "Microsoft Yahei", "Simsun";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.5;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-kerning: auto;
+    color: #444;
+}
+
+.choices {
+    padding-top: 20px;
+}
+
+/*.px{*/
+    /*padding-top: 2px;*/
+    /*padding-right: 4px;*/
+    /*padding-bottom: 2px;*/
+    /*padding-left: 4px;*/
+    /*line-height: 17px;*/
+    /*border: 1px solid;*/
+        /*border-top-width: 1px;*/
+        /*border-right-width: 1px;*/
+        /*border-bottom-width: 1px;*/
+        /*border-left-width: 1px;*/
+        /*border-top-style: solid;*/
+        /*border-right-style: solid;*/
+        /*border-bottom-style: solid;*/
+        /*border-left-style: solid;*/
+        /*border-top-color: currentcolor;*/
+        /*border-right-color: currentcolor;*/
+        /*border-bottom-color: currentcolor;*/
+        /*border-left-color: currentcolor;*/
+        /*border-image-source: none;*/
+        /*border-image-slice: 100%;*/
+        /*border-image-width: 1;*/
+        /*border-image-outset: 0;*/
+        /*border-image-repeat: stretch;*/
+    /*border-color: #848484 #E0E0E0 #E0E0E0 #848484;*/
+    /*background: #FFF url(http://www.eeban.com/static/image/common/px.png) repeat-x 0 0;*/
+
+/*}*/

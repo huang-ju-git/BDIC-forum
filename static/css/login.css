@@ -1,0 +1,66 @@
+.form-container{
+    width: 450px;
+    margin: 0 auto;
+}
+.page-title{
+    text-align: center;
+    padding-bottom: 5px;
+}
+.loginpage {
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+        background-color: rgba(0, 0, 0, 0);
+        background-image: url("../images/back.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: auto auto;
+    background-size: cover;
+}
+
+.register-page{
+       z-index: -1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+        background-color: rgba(0, 0, 0, 0);
+        background-image: url("../images/animation.gif");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-clip: border-box;
+        background-origin: padding-box;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: auto auto;
+    background-size: cover;
+}
+.form{
+    background: rgba(200, 199, 196, 0.5);
+    width:400px;
+    float: right;
+    margin-top: 80px
+}
+/*阴影*/
+.fa{
+    display: inline-block;
+    top: 27px;
+    left: 6px;
+    position: relative;
+    color: #ccc;
+}
+
+.checkbox{
+    padding-left:21px;
+}
+
+
+
+
+

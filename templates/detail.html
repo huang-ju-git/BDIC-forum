@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+	<div class="no-gutter row">
+      		<!-- left side column -->
+  			<div class="col-md-8">
+              	<div class="panel panel-default" id="post">
+
+                <div class="panel-body">
+                    <h3 class="page-title">{{ question.title }}</h3>
+                    <p class="question-information">
+                        <span><a target="_blank" href="{{ url_for('elseinfo', user_id=question.author.id) }}">Author: {{ question.author.username }}</a></span>
+                        <span>Time:{{ question.create_time }}</span>
+
+
+                    <!--  Report button-->
+                    <!-- Modal -->
+                    <button type="button" class="btn btn-link " data-toggle="modal" data-target="#myModal" style="float: right"> Report</button>
+                    </p>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Select Report Reasons</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form method="post" action="{{ url_for('report',id=question.id,num=1) }}" id="report">
+                            <div class="form-group">
+                                <h3>Why do you want to report him?</h3>
+                                <p><input type="radio" name="reason" value="A" /> A. Make defamation or abuse to others, including some personal attackse</p>
+                                <p><input type="radio" name="reason" value="B" /> B. Issue advertisements or launch one's own vote</p>
+                                <p><input type="radio" name="reason" value="C" /> C. Publishing bad information (including violence, pornography, fraud, etc.)</p>
+                                <p><input type="radio" name="reason" value="D" /> D. Other reasons (including gathering a crowd and make disturbances)</p>
+                                <button type="submit" class="btn btn-primary" >Submit</button>
+
+                {#                <input type="submit " class="btn btn-primary "  style="padding-top: 10px" value="Submit" />#}
+                            </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                    <hr>
+                        <div class="question-content">
+                            <p >{{ question.content }}</p>
+                        </div>
+                     <hr>
+                    <h4 class="comment-group-title">Comment ({{ question.answers|length }}) :</h4>
+
+                     <form action=" {{ url_for('add_answer')}}" method="post" class="comment-group-title">
+                        <div class="form-group">
+                             <input name="answer_content" type="text" class="form-control" placeholder="Please fill your comment">
+                             <input type="hidden" name="question_id" value="{{ question.id }}">
+                        </div>
+                        <div class="form-group" style="text-align: right;">
+                            <button class="btn btn-primary">comment</button>
+                        </div>
+                    </form>
+                         <!--显示评论-->
+
+                     <ul class="answer-list">
+{#        {% for question in answer in question.answers %}#}
+                        {% for answer in question.answers %}
+                        <li>
+                            <div class="user-info">
+                                <span class="username">{{ answer.author.username }} </span>
+                                <button type="button" class="btn btn-link " data-toggle="modal" data-target="#commentModal" style="float: right"> Report</button>
+
+{#                                comment  report   #}
+                                 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Select Report Reasons</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form method="post" action="{{ url_for('report',id=answer.id,num=0) }}" id="report">
+                            <div class="form-group">
+                                <h3>Why do you want to report him?</h3>
+                                <p><input type="radio" name="reason" value="A" /> A. Make defamation or abuse to others, including some personal attackse</p>
+                                <p><input type="radio" name="reason" value="B" /> B. Issue advertisements or launch one's own vote</p>
+                                <p><input type="radio" name="reason" value="C" /> C. Publishing bad information (including violence, pornography, fraud, etc.)</p>
+                                <p><input type="radio" name="reason" value="D" /> D. Other reasons (including gathering a crowd and make disturbances)</p>
+                                <button type="submit" class="btn btn-primary" >Submit</button>
+                            </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                                <span class="create-time">{{ answer.create_time }} </span>
+                            </div>
+                            <p class="answer-content">{{ answer.content }} </p>
+
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+      			</div><!--/panel body-->
+              </div><!--/panel-->
+      		</div><!--/end left column-->
+
+
+      		<!--right column-->
+      		<div class="col-md-4">
+              <div class="panel" id="personinfo">
+                <div class="panel-heading" style="background-color:#6996c8;color:#f8f8f8;">Personal Information</div>
+                  <div class="panel-body">
+                    <div class="span9">
+
+                        <div id="asideProfile" class="aside-box">
+                            <div class="profile-intro ">
+                                <div class="icon">
+                                    <a href="{{ url_for('elseinfo', user_id=question.author.id) }}">
+                                       <img alt="40x40" src="{{ url_for('static',filename='')}}{{ question.author.photo}} "  class="img-circle" width="100" height="100" />
+                                    </a>
+                                </div>
+                                <div class="user-info">
+                                    <p class="name">
+                                      <a href="{{ url_for('elseinfo', user_id=question.author.id) }}"  class="text-truncate" >{{ question.author.username}}</a>
+                                    </p>
+                                </div>
+                                <div class="user-info">
+                                    <span class="iffollow" >
+                                    <a class="btn btn-primary" href="{{ url_for('follow',person_id=question.author.id) }}" target="_self" style="background-color: #87a8e1">Follow</a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="data-info d-flex item-tiling">
+                                <dl class="text-center" title="{{ question.author.number_of_post }}">
+                                    <dt>Posts</dt>
+                                        <dd><span class="count">{{ question.author.number_of_post }}</span></dd>
+                                </dl>
+
+                                <dl class="text-center" title="{{ question.author.number_of_comment }}">
+                                    <dt>Comments</dt>
+                                    <dd><span class="count">{{ question.author.number_of_post }}</span></dd>
+                                </dl>
+                            </div>
+
+                            <div class="data-info d-flex item-tiling">
+                                <dl class="text-center" title="{{ question.author.number_of_post }}">
+                                    <dt>Follower</dt>
+                                    <dd><span class="count" id="fan">{{ question.author.number_of_post }}</span></dd>
+                                </dl>
+                                <dl class="text-center" title="{{ question.author.number_of_post }}">
+                                    <dt>Follow</dt>
+                                    <dd><span class="count">{{ question.author.number_of_post }}</span></dd>
+                                </dl>
+                            </div>
+
+                            <div class="data-info d-flex item-tiling">
+                                <dl class="text-center" title="{{ question.author.grade }}">
+                                    <dt>Grade</dt>
+                                        <dd><span class="count">{{ question.author.grade }}</span></dd>
+                                </dl>
+                                <dl class="text-center" title="{{ question.author.point }}">
+                                    <dt>Point</dt>
+                                    <dd><span class="count" id="fan">{{ question.author.point }}</span></dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                    </div>
+
+              </div>
+               </div><!--/panel-->
+      		</div><!--/end mid column-->
+
+			    </div>
+            </div>
+	    </div>
+    </div>
+
+
+
+
+{% endblock %}

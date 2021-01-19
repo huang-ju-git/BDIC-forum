@@ -1,0 +1,154 @@
+
+{%  extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block head %}
+       <link rel="stylesheet" href="{{  url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+{% block main %}
+
+<header class="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><a href="#" title="Scroll down for your viewing pleasure">BDIC Forum</a>
+          <p class="lead">Welcome to BDIC student forum !</p></h1>
+      </div>
+      <div class="col-md-6">
+        <div class=" pull-right">
+{#          <img src="//placehold.it/280x100/E7E7E7">#}
+            <img src="{{ url_for('static',filename='images/college.jpg') }}" style="width: 150px; height: 150px">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Begin Body -->
+<div class="container">
+	<div class="no-gutter row">
+      		<!-- left side column -->
+  			<div class="col-md-2">
+              	<div class="panel panel-default" id="sidebar">
+                <div class="panel-heading" style="background-color:#729de1;color:#fff;"><strong>Classification</strong></div>
+                <div class="panel-body">
+      			<ul class="nav nav-stacked">
+                    <li ><strong>Over All</strong></li>
+                    <li><a href="{{ url_for('type',num=1) }}">Study</a></li>
+          			<li><a href="{{ url_for('type',num=2) }}">Software Engineering</a></li>
+                  	<li><a href="{{ url_for('type',num=3) }}">Internet Of Things</a></li>
+          			<li><a href="{{ url_for('type',num=4) }}">Finance</a></li>
+                  	<li><a href="{{ url_for('type',num=5) }}">Experience</a>
+                    <li ><strong>Life</strong></li>
+	                <li><a href="{{ url_for('type',num=6) }}">Entertainment</a></li>
+	                <li><a href="{{ url_for('type',num=7) }}">Games</a></li>
+	                <li><strong><a href="{{ url_for('type',num=8) }}" >Others</a></strong></li>
+                    <li><strong><a href="{{ url_for('all_votes') }}">All Votes</a></strong></li>
+				</ul>
+                <div class="accordion" id="accordion2">
+
+
+               	</div><!--/acc-->
+
+                  <hr>
+
+                <div class="col col-span-12">
+                  <i class="icon-2x icon-facebook"></i>&nbsp;
+                  <i class="icon-2x icon-twitter"></i>&nbsp;
+                  <i class="icon-2x icon-linkedin"></i>&nbsp;
+                  <i class="icon-2x icon-pinterest"></i>
+                </div>
+
+                </div><!--/panel body-->
+              </div><!--/panel-->
+      		</div><!--/end left column-->
+
+      		<!--mid column-->
+      		<div class="col-md-10">
+              <div class="panel" id="midCol">
+                {% if vote %}
+                    <div class="panel-heading" style="background-color:#6996c8;color:#eee;">Votes</div>
+                {% else %}
+                    <div class="panel-heading" style="background-color:#6996c8;color:#eee;">Posts</div>
+                {% endif %}
+                  <div class="panel-body">
+                    <div class="span9">
+                        <ul class="question-list-group">
+                            {% for question in questions  %}
+                           <li>
+                                <div class="question-group">
+                                    {% if vote %}
+                                        <p class="question-title"><a href="{{ url_for('vote_detail',vote_id=question.id) }}">{{ question.title }}</a></p>
+                                        <p>{{ question.sum_option1 }} participaints took part in this activity. </p>
+                                    {% else %}
+                                        <p class="question-title"><a href="{{ url_for('detail',question_id=question.id) }}">{{ question.title }}</a></p>
+                                        <p class="question-content">{{ question.content }}</p>
+                                    {% endif %}
+                                    <div class="question-detail">
+                                        <span class="question-author">{{ question.author.username }}</span>
+                                        <span class="question-time">{{ question.create_time }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                                      {% endfor %}
+                         </ul></div>
+                    </div>
+                     </div>
+               </div><!--/panel-->
+      		</div><!--/end mid column-->
+
+{#      		<!-- right content column-->#}
+{#      		<div class="col-md-7" id="content">#}
+{#            	<div class="panel">#}
+{#    			<div class="panel-heading" style="background-color:#111;color:#fff;">Top Stories</div>#}
+{#              	<div class="panel-body">#}
+{##}
+{#                  <div class="row">#}
+{#                  </div>#}
+{#                </div>#}
+{#                </div><!--/panel-->#}
+              	<!--/end right column-->
+      	</div>
+  	</div>
+</div>
+<footer>
+  <div class="container">
+  	<div class="row">
+      <div class="col-md-12 text-right"><h5>©Aces 2018</h5></div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+{#    <div class="row-fluid">#}
+{#        <div class="span3">#}
+{#<ul class="nav nav-list" contenteditable="true" style="margin-left: 40px;">#}
+{#	<li class="nav-header"><strong>Over All</strong></li>#}
+{#	<li class="active"><strong><a href="#">Study</a></strong></li>#}
+{#	<li><strong><a href="#">Software Engineer</a></strong></li>#}
+{#	<li><strong><a href="#">Internet Of Things</a></strong></li>#}
+{#	<li><strong><a href="#">Finance</a></strong></li>#}
+{#	<li><strong><a href="#">Experience</a></strong></li>#}
+{#	<li class="nav-header"><strong>Life</strong></li>#}
+{#	<li><strong><a href="#">Entertainment</a></strong></li>#}
+{#	<li><strong><a href="#">Games</a></strong></li>#}
+{#	<li class="divider">&nbsp;</li>#}
+{#	<li><strong><a href="#">Others</a></strong></li>#}
+{#</ul>#}
+{#		</div>#}
+
+{#	</div>#}
+
+
+
+{% endblock %}
+
+
+
+
+

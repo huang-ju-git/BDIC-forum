@@ -1,0 +1,86 @@
+
+{%  extends 'base.html' %}
+
+{% block title %}Friend list of {{ elseuser.username }}{% endblock %}
+
+{% block head %}
+       <link rel="stylesheet" href="{{  url_for('static',filename='css/friend.css')}}">
+{% endblock %}
+
+{% block main %}
+<div class="friend-page">
+
+    <div class="personal">
+        <div class="personal_header">
+                <div class="pf_wrap" layout-shell="false" node-type="cover_wrap">
+                    <div class="cover_wrap photo-cover" node-type="cover" style="background-image:url(//img.t.sinajs.cn/t5/skin/public/profile_cover/019.jpg)" cover-type="1">
+                    </div>
+
+                    <div class="p_shadow  Per_shadow" layout-shell="false">
+                        <div class="pf_photo" node-type="photo">
+                            <p class="photo_wrap">
+                                <a href="{{ url_for('info',user_id=elseuser.id) }}" action-type="setPhoto" title="" >
+                                    <img alt="40x40" src="{{ url_for('static',filename='')}}{{ elseuser.photo}} "  class="photo" width="100" height="100" />
+
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="pf_username">
+                            <h1 class="username">{{ elseuser.username }}</h1>
+                        </div>
+
+                        <div class="pf_intro" title="{{ elseuser.introduction }}">
+                             {{ elseuser.introduction }}
+                        </div>
+
+                    </div>
+
+                    <div class="upcover"></div>
+                </div>
+            </div>
+
+
+    </div>
+
+    <div class="friendbox">
+        <ul class="friendlist" style="list-style: none">
+            {% for friend in list  %}
+            <li class="frienditem" >
+                 <dl class="clearfix">
+                     <dt class="friend-photo">
+                         <a target="_blank" title="{{ friend.username }}" href="{{ url_for('elseinfo',user_id=friend.id) }}">
+                                <img alt="40x40" src="{{ url_for('static',filename='')}}{{ friend.photo}} "  class="img-circle" width="100" height="100" />
+                         </a>
+                     </dt>
+
+                     <dd class="friend_info fline1">
+                         <div class="info_name F_fw F_f14">
+                              <a target="_blank" title="{{ friend.username }}" alt="{{ friend.username }}" href="{{ url_for('elseinfo',user_id=friend.id) }}" class="F_txt1">{{ friend.username }}</a>
+                         </div>
+
+                         <div class="info_connect">
+{#                             <span class="con_type">Grade <em class="count"><a target="_blank" href="#">{{ friend. }}</a></em></span>#}
+{#                             <span class="con_type F_line fline1">Follower <em class="count"><a target="_blank" href="#">61</a></em></span>#}
+{#                             <span class="con_type F_line fline1">Posts <em class="count"><a target="_blank" href="#">3</a></em></span>#}
+                               <span class="con_type">Grade <em class="count">{{ friend.grade }}</em></span>
+                              <span class="con_type F_line fline1">Point <em class="count">{{ friend.point }}</em></span>
+                              <span class="con_type F_line fline1">Posts <em class="count">{{ friend.number_of_post}}</em></span>
+                             <span class="con_type F_line fline1">Comments <em class="count">{{ friend.number_of_comment }}</em></span>
+                         </div>
+
+                         <div class="PCD_user_b F_bg1" node-type="follow_recommend_box" style="display:none"></div>
+
+                         <div class="info_intro"><em class="tit F_txt2">Introduction </em><span>{{ friend.introduction }}</span></div>
+                     </dd>
+
+
+                 </dl>
+                 </li>
+             {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}

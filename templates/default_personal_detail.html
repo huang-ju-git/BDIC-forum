@@ -1,0 +1,198 @@
+{%  extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block head %}
+       <link rel="stylesheet" href="{{  url_for('static',filename='css/personal.css')}}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+{# 导航#}
+    <div class="row-fluid">
+				<div class="span12">
+					<ul class="breadcrumb">
+						<li>
+							<a href="{{ url_for('index') }}">Home Page</a>
+						</li>
+						<li>
+							<a href="{{ url_for('info',user_id=user.id) }}">{{  user.username }}</a>
+						</li>
+						<li class="active">
+							Personal Page
+						</li>
+					</ul>
+                </div>
+            </div>
+
+    <div class="top-part">
+        <div class="perboxa">
+
+{#            <div class="perboxab">#}
+{#               <ul>#}
+{#                   <li class="follow">#}
+{#                        <a href="{{ url_for('follow',person_id=user.id) }}"><i class="glyphicon glyphicon-heart"></i> Follow</a>#}
+{#                    </li>#}
+{#                    <li class="pm2">#}
+{#                          <a href="#" title="Send Message"><i class= "glyphicon glyphicon-envelope"></i> Send Message</a>#}
+{#                   </li>#}
+{#                </ul>#}
+{#            </div>#}
+
+            <div class="perboxaa">
+                        <div class="icon">
+                            <img alt="40x40" src="{{ url_for('static',filename='')}}{{ user.photo}} "  class="img-circle" width="100" height="100" />
+                        </div>
+                        <h2 class="username">{{ user.username }}</h2>
+                        <h5 class="introduction">Introduction: {{ info.introduction }}</h5>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bottom-part">
+					<div class="tabbable" id="tabsa" style="padding-left: 25px">
+						<ul class="nav nav-tabs" style="padding-top: 25px">
+							<li class="active">
+								<a href="#panel-a" data-toggle="tab">Part 1</a>
+							</li>
+							<li>
+								<a href="#panel-b" data-toggle="tab">Part 2</a>
+							</li>
+						</ul>
+                    <!--Part1-->
+
+						<div class="tab-content">
+							<div class="tab-pane active" id="panel-a">
+								<div class="personal_info">
+                                    <!--第一栏-->
+                                    <div class="">
+                                        <h4 class="bigtitle" >{{ user.username }}</h4>
+
+                                    <div class="list-group1">
+                                        <ul>
+                                        <li>
+                                            <em class="smalltitle">The state of email</em>
+                                             Verified
+                                        </li>
+                                        </ul>
+                                    </div>
+                                    <ul></ul>
+                                    <div class="list-group2">
+                                        <ul>
+                                        <li>
+                                            <em class="smalltitle">Statics Information</em>
+                                            <span class="con_type F_line fline1">Follower <em class="count"><a target="_blank" href="{{ url_for('followed',person_id=user.id) }}">{{ info.number_of_followed }}</a></em></span>
+                                            <span class="pipe">|</span>
+                                            <span class="con_type F_line fline1">Following <em class="count"><a target="_blank" href="{{ url_for('following',person_id=user.id) }}">{{ info.number_of_following }}</a></em></span>
+                                            <span class="pipe">|</span>
+                                            <span class="con_type F_line fline1">Posts  <em class="count" style="padding-left: 5px">{{ user.number_of_post }} </em></span>
+                                            <span class="pipe">|</span>
+                                            <span class="con_type F_line fline1">Comments  <em class="count" style="padding-left: 5px">{{ user.number_of_comment }} </em></span>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="personal_info">
+                                    <!--基本信息-->
+                                    <div class="list">
+                                        <h4 class="bigtitle">Basic Information</h4>
+                                    <div class="list-group1">
+                                        <ul>
+                                        <li>
+                                            <em class="smalltitle">Gender: </em>
+                                             {{ info.gender}}
+                                        </li>
+                                        <li>
+                                            <em class="smalltitle">Age:  </em>
+                                             {{ info.age }}
+                                        </li>
+                                        </ul>
+                                    </div>
+                                    <ul></ul>
+                                    <div class="list-group1">
+                                        <ul>
+                                            <li>
+                                                <em class="smalltitle">Class: </em> {{  info.group}}
+                                            </li>
+                                            <li>
+                                                <em class="smalltitle">Major: </em> {{  info.major }}
+                                            </li>
+                                            <li>
+                                                <em class="smalltitle">Hobbies: </em> {{  info.hobbies }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <hr>
+
+
+                                    <!--活跃情况-->
+                                    <div class="personal_info">
+                                        <div class="list">
+                                            <h4 class="bigtitle">Active Situation</h4>
+                                            <div class="list-group1">
+                                                <ul>
+                                                    <li>
+                                                        <em class="smalltitle">Register time: </em>
+                                                        {{ user.register_time }}
+                                                    </li>
+                                                    <li>
+                                                        <em class="smalltitle">Last visit time:   </em>
+                                                         {{ time }}
+                                                    </li>
+                                                    </ul>
+                                            </div>
+                                            <ul></ul>
+                                            <div class="list-group1">
+                                                <ul>
+                                                    <li>
+                                                        <em class="smalltitle">Point: </em> {{  user.point }}
+                                                    </li>
+                                                    <li>
+                                                        <em class="smalltitle">Grade: </em> {{  user.grade }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                     <div class="form-group">
+{#                    <button  type="submit" class="btn btn-primary btn-block"><a href="{{ url_for('edit') }}"> edit</a></button>#}
+                                        <a class="btn btn-primary" href="{{ url_for('edit') }}" style="float: right">edit</a>
+                                    </div>
+								</div>
+
+							</div>
+
+
+
+                             <!--展示所有帖子-->
+							<div class="tab-pane" id="panel-b">
+								<p class="personal_posts">
+									<div class="span9">
+                                        <ul class="question-list-group">
+                                            {% for question in questions  %}
+                                             <li>
+                                                <div class="question-group">
+                                                     <p class="question-title"><a href="{{ url_for('detail',question_id=question.id) }}">{{ question.title }}</a></p>
+                                                     <p class="question-content">{{ question.content }}</p>
+                                                     <div class="question-detail">
+                                                     <span class="question-time">{{ question.create_time }}</span>
+                                                    </div>
+                                                </div>
+                                             </li><hr>
+                                             {% endfor %}
+                                        </ul>
+                                    </div>
+								</p>
+							</div>
+                    </div>
+
+    <div
+</div>
+{% endblock %}

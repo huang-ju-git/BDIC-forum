@@ -1,0 +1,75 @@
+
+.icon {
+    display: inline;
+    float: left;
+    padding-right: 15px;
+}
+
+.top-part{
+    padding-top: 5px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-bottom: none;
+}
+
+.perboxab{
+    padding-top: 10px;
+    float: right;
+    margin-right: 15px;
+    margin-bottom: -30px;
+    line-height: 28px;
+    overflow: hidden;
+}
+
+
+.bottom-part{
+    padding-top: 10px;
+}
+ em{
+    font-style: normal;
+    padding-right: 10px
+}
+
+ .bigtitle{
+     margin-bottom: 5px !important;
+     padding-left: 15px;
+ }
+.smalltitle{
+    color: #666666;
+}
+
+.pipe {
+    margin: 0 5px;
+    color: #CCC;
+}
+ul li{
+    list-style: none;
+}
+
+
+.username {
+        padding-top: 10px;
+        font-size: 30px;
+        padding-left: 10px;
+}
+
+.introduction{;
+        padding-top: 10px;
+        font-size: 20px;
+        padding-left: 10px;
+}
+
+.list-group1{
+    padding-bottom: 5px !important;
+}
+
+.list li{
+    float: left;
+    width: 300px;
+}
